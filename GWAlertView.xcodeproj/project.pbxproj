@@ -14,6 +14,8 @@
 		40AD15031D474F1700851FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40AD15021D474F1700851FF9 /* Assets.xcassets */; };
 		40AD15061D474F1700851FF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40AD15041D474F1700851FF9 /* LaunchScreen.storyboard */; };
 		40AD15101D474F5600851FF9 /* GWAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD150F1D474F5600851FF9 /* GWAlertView.m */; };
+		40AD15151D4750C200851FF9 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD15121D4750C200851FF9 /* UIButton+Extension.m */; };
+		40AD15161D4750C200851FF9 /* UILabel+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD15141D4750C200851FF9 /* UILabel+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		40AD15071D474F1700851FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40AD150E1D474F5600851FF9 /* GWAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GWAlertView.h; sourceTree = "<group>"; };
 		40AD150F1D474F5600851FF9 /* GWAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GWAlertView.m; sourceTree = "<group>"; };
+		40AD15111D4750C200851FF9 /* UIButton+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extension.h"; sourceTree = "<group>"; };
+		40AD15121D4750C200851FF9 /* UIButton+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extension.m"; sourceTree = "<group>"; };
+		40AD15131D4750C200851FF9 /* UILabel+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extension.h"; sourceTree = "<group>"; };
+		40AD15141D4750C200851FF9 /* UILabel+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,10 @@
 		40AD150D1D474F5600851FF9 /* GWAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				40AD15111D4750C200851FF9 /* UIButton+Extension.h */,
+				40AD15121D4750C200851FF9 /* UIButton+Extension.m */,
+				40AD15131D4750C200851FF9 /* UILabel+Extension.h */,
+				40AD15141D4750C200851FF9 /* UILabel+Extension.m */,
 				40AD150E1D474F5600851FF9 /* GWAlertView.h */,
 				40AD150F1D474F5600851FF9 /* GWAlertView.m */,
 			);
@@ -162,6 +172,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40AD15161D4750C200851FF9 /* UILabel+Extension.m in Sources */,
+				40AD15151D4750C200851FF9 /* UIButton+Extension.m in Sources */,
 				40AD14FE1D474F1700851FF9 /* ViewController.m in Sources */,
 				40AD15101D474F5600851FF9 /* GWAlertView.m in Sources */,
 				40AD14FB1D474F1700851FF9 /* AppDelegate.m in Sources */,

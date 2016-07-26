@@ -7,15 +7,18 @@
 //
 
 #import "GWAlertView.h"
+#import "UIButton+Extension.h"
+#import "UILabel+Extension.h"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kBackViewHeight (ScreenHeight * 0.19)
 #define kBackViewWidth (ScreenWidth * 0.65)
+#define kPwdCount 6
 
 @interface GWAlertView ()<UITextViewDelegate>
 {
-    AlertViewStyle showType;
+    NSInteger showType;
 }
 @property (nonatomic,strong) UIWindow * window;
 
@@ -23,10 +26,10 @@
 
 @implementation GWAlertView
 
-- (instancetype)initWithShowType: (AlertViewStyle)type  Title: (NSString *)title message:(NSString *)message cancelBtnStr:(NSString *)cancelBtnStr sureBtnStr:(NSString *)sureBtnStr
+- (instancetype)initWithShowType: (GWAlertViewStyle)type  Title: (NSString *)title message:(NSString *)message cancelBtnStr:(NSString *)cancelBtnStr sureBtnStr:(NSString *)sureBtnStr
 {
-    self = [super init];
-    if (self) {
+    if (self == [super initWithFrame:[UIScreen mainScreen].bounds]) {
+        self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
         showType = type;
         self.titleLbl.text = title;
         self.messageLbl.text = message;
@@ -36,9 +39,10 @@
     return self;
 }
 
-- (instancetype)initWithShowType:(AlertViewStyle)type Title:(NSString *)title textField_placeholder:(NSString *)textField_placeholder cancelBtnStr:(NSString *)cancelBtnStr
+- (instancetype)initWithShowType:(GWAlertViewStyle)type Title:(NSString *)title textField_placeholder:(NSString *)textField_placeholder cancelBtnStr:(NSString *)cancelBtnStr
 {
-    if (self = [super init]) {
+    if (self == [super initWithFrame:[UIScreen mainScreen].bounds]) {
+        self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
         showType = type;
         self.titleLbl.text = title;
         self.textField.delegate = self;
@@ -50,25 +54,11 @@
 
 - (void)show;
 {
-    self.frame = [UIScreen mainScreen].bounds;
     self.backView.center = self.center;
-    
     [self addSubview:self.backView];
     self.window = [UIApplication sharedApplication].keyWindow;
     [self.window addSubview:self];
-    self.backgroundColor = [UIColor colorWithWhite:.7 alpha:.7];
-}
-
-#pragma mark -- UITextViewDelegate
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    textView.text = @"";
-}
-
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.textField resignFirstResponder];
+    self.backgroundColor = [UIColor lightTextColor];
 }
 
 /**
@@ -102,28 +92,23 @@
     if(!_backView) {
         _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kBackViewWidth, kBackViewHeight)];
         _backView.backgroundColor = [UIColor whiteColor];
-        //    self.backView.center = self.center;
+        _backView.layer.borderColor = [[UIColor whiteColor] CGColor];
+        _backView.layer.borderWidth = 3;
         [_backView addSubview:_titleLbl];
-        
         //如果类型不是”输入框类型“
-        if (showType != 2) {
+        if (showType == 0 || showType == 1) {
             [_backView addSubview:_messageLbl];
         }
-        
         if (showType == 2) {
             [_backView addSubview:self.textField];
         }
-        
-        /**
-         *  如果类型为 AlertViewStyleValue1
-         */
+        //如果类型为 AlertViewStyleValue1
         if (showType == 0) {
             [_backView addSubview:_sureBtn];
         }
         [_backView addSubview:_cancelBtn];
         _backView.layer.cornerRadius = 10;
         _backView.layer.masksToBounds = YES;
-        
     }
     return _backView;
 }
@@ -131,7 +116,8 @@
 - (UILabel *)titleLbl
 {
     if(!_titleLbl) {
-        _titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kBackViewWidth, kBackViewHeight / 3) Text:@"警告" TextColor:[UIColor blackColor] Font:[UIFont systemFontOfSize:17.f]];
+        _titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kBackViewWidth, kBackViewHeight / 3) Text:@"警告" TextColor:[UIColor whiteColor] Font:[UIFont systemFontOfSize:17.f]];
+        _titleLbl.backgroundColor = [UIColor blackColor];
         _titleLbl.textAlignment = UITextAlignmentCenter;
     }
     return _titleLbl;
@@ -140,7 +126,7 @@
 - (UILabel *)messageLbl
 {
     if(!_messageLbl) {
-        _messageLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3, kBackViewWidth, kBackViewHeight / 3) Text:@"你太帅了，别让我看见你" TextColor:[UIColor blackColor] Font:[UIFont systemFontOfSize:12.f]];
+        _messageLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3, kBackViewWidth, kBackViewHeight / 3) Text:@"你太帅了，别让我看见你" TextColor:[UIColor blackColor] Font:[UIFont systemFontOfSize:17]];
         _messageLbl.textAlignment = UITextAlignmentCenter;
     }
     return _messageLbl;
@@ -159,9 +145,10 @@
 - (UIButton *)sureBtn
 {
     if(!_sureBtn) {
-        _sureBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3 * 2, kBackViewWidth / 2 , kBackViewHeight / 3) Title:@"OK" TitleColor:[UIColor blackColor] addTarget:self action:@selector(sureBtnAction:)];
-        _sureBtn.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-        _sureBtn.layer.borderWidth = 1.f;
+        _sureBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3 * 2, kBackViewWidth / 2 , kBackViewHeight / 3) Title:@"OK" TitleColor:[UIColor whiteColor] addTarget:self action:@selector(sureBtnAction:)];
+        _sureBtn.backgroundColor = [UIColor blackColor];
+        _sureBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        _sureBtn.layer.borderWidth = 1.5f;
     }
     return _sureBtn;
 }
@@ -171,13 +158,13 @@
     if(!_cancelBtn) {
         
         if (showType == 0) {
-            _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(kBackViewWidth / 2, kBackViewHeight / 3 * 2, kBackViewWidth / 2, kBackViewHeight / 3) Title:@"Cancel" TitleColor:[UIColor blackColor] addTarget:self action:@selector(cancelBtnAction:)];
+            _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(kBackViewWidth / 2, kBackViewHeight / 3 * 2, kBackViewWidth / 2, kBackViewHeight / 3) Title:@"Cancel" TitleColor:[UIColor whiteColor] addTarget:self action:@selector(cancelBtnAction:)];
         }else {
-            _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3 * 2, kBackViewWidth, kBackViewHeight / 3) Title:@"Cancel" TitleColor:[UIColor blackColor] addTarget:self action:@selector(cancelBtnAction:) ];
+            _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3 * 2, kBackViewWidth, kBackViewHeight / 3) Title:@"Cancel" TitleColor:[UIColor whiteColor] addTarget:self action:@selector(cancelBtnAction:) ];
         }
-        
-        _cancelBtn.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-        _cancelBtn.layer.borderWidth = 1.f;
+        _cancelBtn.backgroundColor = [UIColor blackColor];
+        _cancelBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
+        _cancelBtn.layer.borderWidth = 1.5f;
     }
     return _cancelBtn;
 }

@@ -8,21 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, AlertViewStyle)
+typedef NS_ENUM(NSInteger, GWAlertViewStyle)
 {
     /**
-     *  有两个按钮
+     *  两个button
      */
-    AlertViewStyleDefault,
+    GWAlertViewStyleDefault,
     /**
      *  只有一个cancel按钮
      */
-    AlertViewStyleOneBtn,
+    GWAlertViewStyleOneBtn,
     
     /**
      *  一个cancel，一个输入框
      */
-    AlertViewStyleOneTextfield
+    GWAlertViewStyleOneTextfield
 };
 @protocol GWAlertViewdelegate <NSObject>
 
@@ -45,12 +45,10 @@ typedef NS_ENUM(NSInteger, AlertViewStyle)
 @property (nonatomic,strong) UIButton * cancelBtn, * sureBtn;
 @property (nonatomic,strong) UITextView * textField;
 @property (nonatomic,strong) UIView * backView;
-//@property (nonatomic,assign) CGRect frame;
 @property (nonatomic,weak) id<GWAlertViewdelegate> delegate;
 
-- (instancetype)initWithShowType: (AlertViewStyle)type Title: (NSString *)title message:(NSString *)message cancelBtnStr:(NSString *)cancelBtnStr sureBtnStr:(NSString *)sureBtnStr;
-
-- (instancetype)initWithShowType:(AlertViewStyle)type Title:(NSString *)title textField_placeholder:(NSString *)textField_placeholder cancelBtnStr:(NSString *)cancelBtnStr;
+- (instancetype)initWithShowType: (GWAlertViewStyle)type Title: (NSString *)title message:(NSString *)message cancelBtnStr:(NSString *)cancelBtnStr sureBtnStr:(NSString *)sureBtnStr;
+- (instancetype)initWithShowType:(GWAlertViewStyle)type Title:(NSString *)title textField_placeholder:(NSString *)textField_placeholder cancelBtnStr:(NSString *)cancelBtnStr;
 
 /**
  *  show 出来
