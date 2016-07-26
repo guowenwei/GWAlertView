@@ -13,6 +13,7 @@
 		40AD15011D474F1700851FF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40AD14FF1D474F1700851FF9 /* Main.storyboard */; };
 		40AD15031D474F1700851FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40AD15021D474F1700851FF9 /* Assets.xcassets */; };
 		40AD15061D474F1700851FF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40AD15041D474F1700851FF9 /* LaunchScreen.storyboard */; };
+		40AD15101D474F5600851FF9 /* GWAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD150F1D474F5600851FF9 /* GWAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		40AD15021D474F1700851FF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40AD15051D474F1700851FF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40AD15071D474F1700851FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40AD150E1D474F5600851FF9 /* GWAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GWAlertView.h; sourceTree = "<group>"; };
+		40AD150F1D474F5600851FF9 /* GWAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GWAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		40AD14F51D474F1700851FF9 /* GWAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				40AD150D1D474F5600851FF9 /* GWAlertView */,
 				40AD14F91D474F1700851FF9 /* AppDelegate.h */,
 				40AD14FA1D474F1700851FF9 /* AppDelegate.m */,
 				40AD14FC1D474F1700851FF9 /* ViewController.h */,
@@ -77,6 +81,15 @@
 				40AD14F71D474F1700851FF9 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40AD150D1D474F5600851FF9 /* GWAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				40AD150E1D474F5600851FF9 /* GWAlertView.h */,
+				40AD150F1D474F5600851FF9 /* GWAlertView.m */,
+			);
+			path = GWAlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40AD14FE1D474F1700851FF9 /* ViewController.m in Sources */,
+				40AD15101D474F5600851FF9 /* GWAlertView.m in Sources */,
 				40AD14FB1D474F1700851FF9 /* AppDelegate.m in Sources */,
 				40AD14F81D474F1700851FF9 /* main.m in Sources */,
 			);
@@ -300,6 +314,7 @@
 				40AD150C1D474F1700851FF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
