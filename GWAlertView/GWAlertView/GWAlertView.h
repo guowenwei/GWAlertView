@@ -47,8 +47,8 @@ typedef NS_ENUM(NSInteger, GWAlertViewStyle)
 @property (nonatomic,strong) UIView * backView;
 @property (nonatomic,weak) id<GWAlertViewdelegate> delegate;
 
-- (instancetype)initWithShowType: (GWAlertViewStyle)type Title: (NSString *)title message:(NSString *)message cancelBtnStr:(NSString *)cancelBtnStr sureBtnStr:(NSString *)sureBtnStr;
-- (instancetype)initWithShowType:(GWAlertViewStyle)type Title:(NSString *)title textField_placeholder:(NSString *)textField_placeholder cancelBtnStr:(NSString *)cancelBtnStr;
+- (instancetype)initWithShowType: (GWAlertViewStyle)type backColor:(UIColor *)color Title: (NSString *)title message:(NSString *)message cancelBtnStr:(NSString *)cancelBtnStr sureBtnStr:(NSString *)sureBtnStr;
+- (instancetype)initWithShowType:(GWAlertViewStyle)type backColor:(UIColor *)color Title:(NSString *)title textField_placeholder:(NSString *)textField_placeholder cancelBtnStr:(NSString *)cancelBtnStr;
 
 /**
  *  show 出来

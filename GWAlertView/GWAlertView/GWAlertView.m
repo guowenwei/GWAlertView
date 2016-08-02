@@ -19,6 +19,7 @@
 @interface GWAlertView ()<UITextViewDelegate>
 {
     NSInteger showType;
+    UIColor * _tempColor;
 }
 @property (nonatomic,strong) UIWindow * window;
 
@@ -26,11 +27,16 @@
 
 @implementation GWAlertView
 
-- (instancetype)initWithShowType: (GWAlertViewStyle)type  Title: (NSString *)title message:(NSString *)message cancelBtnStr:(NSString *)cancelBtnStr sureBtnStr:(NSString *)sureBtnStr
+- (instancetype)initWithShowType: (GWAlertViewStyle)type backColor:(UIColor *)color  Title: (NSString *)title message:(NSString *)message cancelBtnStr:(NSString *)cancelBtnStr sureBtnStr:(NSString *)sureBtnStr
 {
     if (self == [super initWithFrame:[UIScreen mainScreen].bounds]) {
         self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
         showType = type;
+        if (color != nil) {
+            _tempColor = color;
+        } else {
+            _tempColor = [UIColor blackColor];
+        }
         self.titleLbl.text = title;
         self.messageLbl.text = message;
         [self.sureBtn setTitle:sureBtnStr forState:(UIControlStateNormal)];
@@ -39,11 +45,16 @@
     return self;
 }
 
-- (instancetype)initWithShowType:(GWAlertViewStyle)type Title:(NSString *)title textField_placeholder:(NSString *)textField_placeholder cancelBtnStr:(NSString *)cancelBtnStr
+- (instancetype)initWithShowType:(GWAlertViewStyle)type backColor:(UIColor *)color Title:(NSString *)title textField_placeholder:(NSString *)textField_placeholder cancelBtnStr:(NSString *)cancelBtnStr
 {
     if (self == [super initWithFrame:[UIScreen mainScreen].bounds]) {
         self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
         showType = type;
+        if (color != nil) {
+            _tempColor = color;
+        } else {
+            _tempColor = [UIColor blackColor];
+        }
         self.titleLbl.text = title;
         self.textField.delegate = self;
         self.textField.text = textField_placeholder;
@@ -117,7 +128,7 @@
 {
     if(!_titleLbl) {
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kBackViewWidth, kBackViewHeight / 3) Text:@"警告" TextColor:[UIColor whiteColor] Font:[UIFont systemFontOfSize:17.f]];
-        _titleLbl.backgroundColor = [UIColor blackColor];
+        _titleLbl.backgroundColor = _tempColor;
         _titleLbl.textAlignment = UITextAlignmentCenter;
     }
     return _titleLbl;
@@ -146,7 +157,7 @@
 {
     if(!_sureBtn) {
         _sureBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3 * 2, kBackViewWidth / 2 , kBackViewHeight / 3) Title:@"OK" TitleColor:[UIColor whiteColor] addTarget:self action:@selector(sureBtnAction:)];
-        _sureBtn.backgroundColor = [UIColor blackColor];
+        _sureBtn.backgroundColor = _tempColor;
         _sureBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
         _sureBtn.layer.borderWidth = 1.5f;
     }
@@ -162,7 +173,7 @@
         }else {
             _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3 * 2, kBackViewWidth, kBackViewHeight / 3) Title:@"Cancel" TitleColor:[UIColor whiteColor] addTarget:self action:@selector(cancelBtnAction:) ];
         }
-        _cancelBtn.backgroundColor = [UIColor blackColor];
+        _cancelBtn.backgroundColor = _tempColor;
         _cancelBtn.layer.borderColor = [[UIColor whiteColor]CGColor];
         _cancelBtn.layer.borderWidth = 1.5f;
     }

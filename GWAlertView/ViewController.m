@@ -23,7 +23,7 @@
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     self.view.backgroundColor = [UIColor lightTextColor];
-    GWAlertView * alertView = [[GWAlertView alloc] initWithShowType:(GWAlertViewStyleOneBtn) Title:@"警告" message:@"支持我吗？" cancelBtnStr:@"取消" sureBtnStr:@"确定"];
+    GWAlertView * alertView = [[GWAlertView alloc] initWithShowType:2 backColor:[UIColor redColor] Title:@"请输入密码" textField_placeholder:@"mima" cancelBtnStr:@"确定"];
     alertView.delegate = self;
     [alertView show];
 }
