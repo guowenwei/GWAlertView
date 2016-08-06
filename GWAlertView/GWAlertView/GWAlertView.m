@@ -98,6 +98,19 @@
     }
 }
 
+//TextViewDelegate
+//TextViewDelegate
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    textView.text = @"";
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    textView.text = @"";
+}
+
 - (UIView *)backView
 {
     if(!_backView) {
@@ -129,7 +142,7 @@
     if(!_titleLbl) {
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kBackViewWidth, kBackViewHeight / 3) Text:@"警告" TextColor:[UIColor whiteColor] Font:[UIFont systemFontOfSize:17.f]];
         _titleLbl.backgroundColor = _tempColor;
-        _titleLbl.textAlignment = UITextAlignmentCenter;
+        _titleLbl.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLbl;
 }
@@ -138,7 +151,7 @@
 {
     if(!_messageLbl) {
         _messageLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3, kBackViewWidth, kBackViewHeight / 3) Text:@"你太帅了，别让我看见你" TextColor:[UIColor blackColor] Font:[UIFont systemFontOfSize:17]];
-        _messageLbl.textAlignment = UITextAlignmentCenter;
+        _messageLbl.textAlignment = NSTextAlignmentCenter;
     }
     return _messageLbl;
 }
@@ -146,9 +159,11 @@
 - (UITextView *)textField
 {
     if(!_textField) {
-        _textField = [[UITextView alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3, kBackViewWidth, kBackViewHeight / 3)];
+        _textField = [[UITextView alloc] initWithFrame:CGRectMake(0, kBackViewHeight / 3, kBackViewWidth, kBackViewHeight /3 )];
+        _textField.delegate = self;
+        _textField.font = [UIFont systemFontOfSize:17];
         _textField.textColor = [UIColor redColor];
-        _textField.textAlignment = UITextAlignmentCenter;
+        _textField.textAlignment = NSTextAlignmentCenter;
     }
     return _textField;
 }
